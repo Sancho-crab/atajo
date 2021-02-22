@@ -1,4 +1,8 @@
 package gps;
+
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Bicicleta class
  * 
@@ -13,17 +17,32 @@ public class Bicicleta {
         String marca = "Orbea";
     }
     
+    public static int longiDif(int [] camino1, int [] camino2, int [] camino3) {
+    	int result = Math.max(camino1.length, camino2.length);
+    	result = Math.max(result, camino3.length);
+    	return result;
+    }
+    
     public static String rutaCorta(int [] camino1, int [] camino2, int [] camino3)
     {
         int sum1 = 0;
         int sum2 = 0;
         int sum3 = 0;
         
-        for(int i=0; i<camino1.length; i++)
+        int resultado = Bicicleta.longiDif(camino1, camino2, camino3);
+        
+        for(int i=0; i<resultado; i++)
         {
-            sum1 += camino1[i];
-            sum2 += camino2[i];
-            sum3 += camino3[i];
+        	if (i < camino1.length) {
+        		sum1 += camino1[i];
+        	}
+        	if (i < camino2.length) {
+        		sum2 += camino2[i];
+        	}
+        	if (i< camino3.length) {
+        		sum3 += camino3[i];
+        	}
+        	
         }
         
         if(sum1 < sum2 && sum1 < sum3)
@@ -50,6 +69,7 @@ public class Bicicleta {
         }
         
     }
+    
 
     public static void main(String[] args) {
         Bicicleta bici = new Bicicleta();
